@@ -14,6 +14,8 @@ import CustomNode from './CustomNode';
 import 'reactflow/dist/style.css';
 import './styles.css';
 
+import NodeCard  from './NodeCard'
+
 const DiagramProps = {
     nodeTypes: { custom:  CustomNode},
 }
@@ -35,26 +37,34 @@ const Diagram = () => {
     return edge;
   });
 
+  const onElementClick = (event, object) => {
+    console.log(object.data);
+    };
+
   return (
-        <ReactFlow
-          nodes={nodes}
-          edges={edgesWithUpdatedTypes}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          onInit={onInit}
-          fitView
-          attributionPosition="top-right"
-          nodeTypes={DiagramProps.nodeTypes.custom}
-          style={{
-            height: 850,
-            width: 850
-          }}
-        >
-          <MiniMap zoomable pannable />
-          <Controls />
-          <Background color="#aaa" gap={16} />
-        </ReactFlow>    
+        <><ReactFlow
+      nodes={nodes}
+      edges={edgesWithUpdatedTypes}
+      onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
+      onConnect={onConnect}
+      onInit={onInit}
+      fitView
+      attributionPosition="top-right"
+      nodeTypes={DiagramProps.nodeTypes.custom}
+      style={{
+        height: 850,
+        width: 850
+      }}
+      onElementClick={onElementClick}
+      onNodeClick={onElementClick}
+    >
+      <NodeCard />
+      <MiniMap zoomable pannable />
+      <Controls />
+      <Background color="#aaa" gap={16} />
+    </ReactFlow>
+    </>    
   );
 };
 
