@@ -15,12 +15,14 @@ import 'reactflow/dist/style.css';
 import './styles.css';
 
 import NodeCard  from './NodeCard'
+import Teste from '../teste';
 
 const DiagramProps = {
     nodeTypes: { custom:  CustomNode},
 }
 
 const onInit = (reactFlowInstance) => console.log('flow loaded:', reactFlowInstance);
+
 
 const Diagram = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -63,6 +65,7 @@ const Diagram = () => {
       onNodeClick={onElementClick}
     >
       <NodeCard  text={text}/>
+      <Teste/>
       <MiniMap zoomable pannable />
       <Controls />
       <Background color="#aaa" gap={16} />
