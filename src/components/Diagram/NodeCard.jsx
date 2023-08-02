@@ -1,7 +1,7 @@
-const NodeCard = () => {
+const NodeCard = ({text}) => {
     return (
         <div>
-            teste
+            {text}
         </div>
     )
 }

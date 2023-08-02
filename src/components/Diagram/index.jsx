@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import ReactFlow, {
   addEdge,
   MiniMap,
@@ -26,6 +26,8 @@ const Diagram = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
+  const [text, setText] = useState()
+
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 
   const edgesWithUpdatedTypes = edges.map((edge) => {
@@ -39,6 +41,7 @@ const Diagram = () => {
 
   const onElementClick = (event, object) => {
     console.log(object.data);
+    setText(object.data.label)
     };
 
   return (
@@ -59,7 +62,7 @@ const Diagram = () => {
       onElementClick={onElementClick}
       onNodeClick={onElementClick}
     >
-      <NodeCard />
+      <NodeCard  text={text}/>
       <MiniMap zoomable pannable />
       <Controls />
       <Background color="#aaa" gap={16} />
